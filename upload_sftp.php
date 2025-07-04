@@ -2,9 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Path lengkap ke library phpseclib3
-require_once __DIR__ . '/var/www/vhosts/putumayo.gov.co/pda.putumayo.gov.co/phpseclib-master/phpseclib3/Net/SSH2.php';
-require_once __DIR__ . '/var/www/vhosts/putumayo.gov.co/pda.putumayo.gov.co/phpseclib-master/phpseclib3/Net/SFTP.php';
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SSH2.php';
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SFTP.php';
 
 use phpseclib3\Net\SFTP;
 
@@ -15,14 +14,14 @@ $password = 'psacln';
 $sftp = new SFTP($host);
 
 if (!$sftp->login($username, $password)) {
-    die('❌ Login gagal');
+    die('Login gagal');
 }
 
 $localFile = __DIR__ . '/localfile.txt';
 $remoteFile = '/home/adminptyogov/remote_uploaded_file.txt';
 
 if (!$sftp->put($remoteFile, file_get_contents($localFile))) {
-    die('❌ Upload gagal');
+    die('Upload gagal');
 }
 
-echo "✅ Upload berhasil!";
+echo "Upload berhasil!";
