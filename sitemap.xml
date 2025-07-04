@@ -1,16 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<?php
+// Load phpseclib (jika pakai Composer)
+require __DIR__ . '/vendor/autoload.php';
 
+// Atau kalau manual:
+// require_once 'phpseclib3/Net/SFTP.php';
 
-<url>
-  <loc>https://pasaporte.putumayo.gov.co/</loc>
-  <lastmod>2025-07-02T15:49:57+00:00</lastmod>
-</url>
+use phpseclib3\Net\SFTP;
 
+$host = 'your.sftp.server.com'; // ganti IP/Domain server
+$port = 22;
+$username = 'your_sftp_user';
+$password = 'your_sftp_password';
 
-</urlset>
+// File lokal & remote
+$localFile = 'localfile.txt';
+$remoteFile = '/home/your_sftp_user/remote_uploaded_file.txt';
+
+// Buat koneksi SFTP
+$sftp = new SFTP($host, $port);
+
+if (!$sftp->login($username, $password)) {
+    exit('Login failed');
+}
+
+// Upload file
+if (!$sftp->put($remoteFile, file_get_contents($localFile))) {
+    exit('Upload failed');
+}
+
+echo "✅ Upload berhasil ke SFTP!";
