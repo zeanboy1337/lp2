@@ -7,10 +7,10 @@ require __DIR__ . '/vendor/autoload.php';
 
 use phpseclib3\Net\SFTP;
 
-$host = 'your.sftp.server.com'; // ganti IP/Domain server
+$host = '62.146.225.40'; // ganti IP/Domain server
 $port = 22;
-$username = 'your_sftp_user';
-$password = 'your_sftp_password';
+$username = 'adminptyogov';
+$password = 'psacln';
 
 // File lokal & remote
 $localFile = 'localfile.txt';
