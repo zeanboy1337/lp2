@@ -2,8 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once __DIR__ . '/phpseclib/Net/SSH2.php';
-require_once __DIR__ . '/phpseclib/Net/SFTP.php';
+require_once __DIR__ . '/phpseclib/phpseclib/Net/SSH2.php';
+require_once __DIR__ . '/phpseclib/phpseclib/Net/SFTP.php';
 
 use phpseclib\Net\SFTP;
 
