@@ -1,40 +1,26 @@
 <?php
-// Debug error biar tidak HTTP 500
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Load phpseclib manual
-require_once __DIR__ . '/phpseclib3/Net/SFTP.php';
+// Lokasi phpseclib manual
+require_once __DIR__ . '/phpseclib-master/phpseclib/Net/SFTP.php';
 
-use phpseclib3\Net\SFTP;
+use phpseclib\Net\SFTP;
 
 $host = '62.146.225.40';
-$port = 22;
 $username = 'adminptyogov';
 $password = 'psacln';
 
-// Path file lokal
-$localFile = __DIR__ . '/localfile.txt';
-
-// Periksa file lokal dulu
-if (!file_exists($localFile)) {
-    die('❌ File lokal tidak ditemukan: ' . $localFile);
+$sftp = new SFTP($host);
+if (!$sftp->login($username, $password)) {
+    die('Login failed');
 }
 
-// Path remote, disesuaikan home user SFTP
+$localFile = __DIR__ . '/localfile.txt';
 $remoteFile = '/home/adminptyogov/remote_uploaded_file.txt';
 
-$sftp = new SFTP($host, $port);
-
-// Login SFTP
-if (!$sftp->login($username, $password)) {
-    die('❌ Login failed. Periksa IP, user, atau password.');
-}
-
-// Upload file
 if (!$sftp->put($remoteFile, file_get_contents($localFile))) {
-    die('❌ Upload gagal. Periksa permission folder remote.');
+    die('Upload failed');
 }
 
 echo "✅ Upload berhasil ke SFTP!";
