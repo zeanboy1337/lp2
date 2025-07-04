@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+// Load library yang benar (phpseclib3)
 require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SSH2.php';
 require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SFTP.php';
 
@@ -14,14 +15,7 @@ $password = 'psacln';
 $sftp = new SFTP($host);
 
 if (!$sftp->login($username, $password)) {
-    die('Login gagal');
+    die('❌ Login failed');
 }
 
-$localFile = __DIR__ . '/localfile.txt';
-$remoteFile = '/home/adminptyogov/remote_uploaded_file.txt';
-
-if (!$sftp->put($remoteFile, file_get_contents($localFile))) {
-    die('Upload gagal');
-}
-
-echo "Upload berhasil!";
+echo "✅ Login success!";
