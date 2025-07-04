@@ -2,8 +2,16 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Load autoloader phpseclib3 (sesuaikan path)
-require_once __DIR__ . '/phpseclib-master/phpseclib3/bootstrap.php';
+// Include dependencies satu per satu (urutan penting)
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/Functions/Strings.php';
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/Functions/Multibyte.php';
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/Functions/JSON.php';
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/Functions/UTF8.php';
+
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/ConstantUtilityTrait.php';
+
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SSH2.php';
+require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SFTP.php';
 
 use phpseclib3\Net\SFTP;
 
