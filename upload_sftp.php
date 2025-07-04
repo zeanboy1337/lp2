@@ -2,13 +2,10 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/Functions/Strings.php';
-require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/ConstantUtilityTrait.php';
+require_once __DIR__ . '/phpseclib/Net/SSH2.php';
+require_once __DIR__ . '/phpseclib/Net/SFTP.php';
 
-require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SSH2.php';
-require_once __DIR__ . '/phpseclib-master/phpseclib3/Net/SFTP.php';
-
-use phpseclib3\Net\SFTP;
+use phpseclib\Net\SFTP;
 
 $host = '62.146.225.40';
 $username = 'adminptyogov';
