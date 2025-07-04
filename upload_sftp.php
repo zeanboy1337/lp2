@@ -2,7 +2,6 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Hanya require file yang ada saja
 require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/Functions/Strings.php';
 require_once __DIR__ . '/phpseclib-master/phpseclib3/Common/ConstantUtilityTrait.php';
 
